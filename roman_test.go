@@ -26,8 +26,8 @@ var toRomanTests = []struct {
 	{9, "IX", nil},
 	{1954, "MCMLIV", nil},
 	{4999, "MMMMCMXCIX", nil},
-	{0, "", errors.New("unable to convert zero to Roman numerals")},
-	{-1, "", errors.New("unable to convert negative number to Roman numerals")},
+	{0, "", errors.New("FromInt 0: zero is not represented in Roman numerals")},
+	{-1, "", errors.New("FromInt -1: negative numbers are not represented in Roman numerals")},
 }
 
 func TestToRoman(t *testing.T) {
@@ -114,9 +114,9 @@ var toIntTests = []struct {
 	{9, "IX", nil},
 	{1954, "MCMLIV", nil},
 	{3999, "MMMCMXCIX", nil},
-	{0, "", errors.New("unable to parse Roman numeral")},
-	{0, "ABCD", errors.New("unable to parse Roman numeral")},
-	{0, "IXX", errors.New("unable to parse Roman numeral")},
+	{0, "", errors.New("ToInt '': is not considered a valid Roman numeral")},
+	{0, "ABCD", errors.New("ToInt 'ABCD': is not considered a valid Roman numeral")},
+	{0, "IXX", errors.New("ToInt 'IXX': is not considered a valid Roman numeral")},
 }
 
 func TestToInt(t *testing.T) {

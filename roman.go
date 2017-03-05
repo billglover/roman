@@ -1,7 +1,7 @@
 package roman
 
 import (
-	"errors"
+	"fmt"
 	"strings"
 )
 
@@ -29,12 +29,12 @@ var numerals = []struct {
 func FromInt(i int) (s string, e error) {
 
 	if i == 0 {
-		e = errors.New("unable to convert zero to Roman numerals")
+		e = fmt.Errorf("FromInt %d: zero is not represented in Roman numerals", i)
 		return
 	}
 
 	if i < 0 {
-		e = errors.New("unable to convert negative number to Roman numerals")
+		e = fmt.Errorf("FromInt %d: negative numbers are not represented in Roman numerals", i)
 		return
 	}
 
@@ -58,7 +58,7 @@ func FromInt(i int) (s string, e error) {
 func ToInt(s string) (i int, e error) {
 
 	if IsValid(s, false) != true {
-		e = errors.New("unable to parse Roman numeral")
+		e = fmt.Errorf("ToInt '%s': is not considered a valid Roman numeral", s)
 		return
 	}
 
